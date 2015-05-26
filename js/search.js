@@ -49,7 +49,7 @@ search_btn.addEventListener('click', function(e) {
 		for(var x = 0; x<crawledImages.length; x++) {
 			crawledImages[x].addEventListener('click', function(e){
 				console.log(this.href);
-				e.preventDefault();
+				
 			}, false);			
 		}
 	
@@ -87,14 +87,16 @@ function getJSON(path, callback) {
 
 // Add image to location in DOM
 function addImage(thumbURL, url, location) {
-	var newIMG = document.createElement('IMG');
 	var newLink = document.createElement('A');
+	var newIMG = document.createElement('IMG');
+	var newDiv = document.createElement('DIV');
 	newLink.href = url;
 	newLink.classList.add('crawledImage');
+	newDiv.classList.add('image');
 	newIMG.src = thumbURL;
 	newLink.appendChild(newIMG);
-
-	$(location).appendChild(newLink);
+	newDiv.appendChild(newLink);
+	$(location).appendChild(newDiv);
 }
 
 // Helper function, for brevity

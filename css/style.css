@@ -2,11 +2,8 @@
 	font-family: 'Helvetica';
 }
 
-#images img {
-	display: inline;
-	float: left;
-	margin: 0 1em 1em 0;
-
+#search_btn {
+	margin-right: 1em;
 }
 
 #images {
@@ -15,4 +12,24 @@
 
 label[for='dropdown_limit'] {
 	margin-left: 1em;
+}
+
+/* Each image div will be 140px in height so that */
+.image {
+	margin: 0 1em 1em 0;
+	height: 140px;
+	float: left;
+}
+
+.image img {
+	border-radius: 5px;
+	border: 1px solid #bbb;
+}
+
+.image  {
+	transition: all .2s ease-in-out;
+}
+
+.image:hover {
+	transform: scale(1.1);
 }
