@@ -24,8 +24,6 @@ search_btn.addEventListener('click', function(e) {
 
 	console.log(subreddit);
 
-	var images = [];
-
 	getJSON(subreddit, function(data){
 		// testing
 		console.log(data);
@@ -61,13 +59,6 @@ search_btn.addEventListener('click', function(e) {
 // Clear search text box when clicked
 sub_text.addEventListener('click', function(){
 	this.value = '';
-}, false);
-
-// Run search if user hits enter key from the search box
-sub_text.addEventListener('keyup', function(event){
-	if(event.keyCode == 13) {
-		search_btn.click();
-	}
 }, false);
 
 function getJSON(path, callback) {
