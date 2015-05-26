@@ -91,6 +91,7 @@ function addImage(thumbURL, url, location) {
 	var newIMG = document.createElement('IMG');
 	var newDiv = document.createElement('DIV');
 	newLink.href = url;
+	newLink.target = "_blank";
 	newLink.classList.add('crawledImage');
 	newDiv.classList.add('image');
 	newIMG.src = thumbURL;
