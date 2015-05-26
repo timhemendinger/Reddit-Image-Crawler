@@ -1,0 +1,5 @@
+#images img {
+	display: inline;
+	float: left;
+	max-width: 10%;
+}
