@@ -1,31 +1,73 @@
 
-$('search_btn').addEventListener('click', function() {
+var sub_text = $('sub_text');
+var search_btn = $('search_btn');
 
-	var sub_text = $('sub_text');
+search_btn.addEventListener('click', function(e) {
+
+	// Get selected sort radio box (hot/new/top)
+	var sortOption = getRadioValue('form-search', 'sort');
+	sortOption = (sortOption.slice(0,sortOption.indexOf('_rbox')));
+
+	// Get result limit selected (25/50/100/250/500)
+	var limit = document.getElementById('dropdown_limit');
+	limit = limit.options[limit.selectedIndex].text;
 
 	// Clear the images displayed (if there was a previous search)
 	$('images').innerHTML = '';
 
 	// Reddit JSON URL for Subreddit entered
-	var subreddit = 'http://www.reddit.com/r/'+(sub_text.value)+'/.json?';
+	var subreddit = 'http://www.reddit.com/r/'
+					+(sub_text.value)
+					+'/'+sortOption
+					+'/.json?'
+					+'limit='+limit+'&after=1';
+
+	console.log(subreddit);
 
 	var images = [];
 
 	getJSON(subreddit, function(data){
+		// testing
 		console.log(data);
+
 		// Iterate through the URLS
 		for(var x=0; x<data.data.children.length; x++) {
-	 		addImage(data.data.children[x].data.thumbnail,
-	 		data.data.children[x].data.url, 'images')
+			
+			var thumb = data.data.children[x].data.thumbnail;
+			var url = data.data.children[x].data.url;
+
+			// Ensure that there is a proper thumbnail image URL, otherwise a broken image will be shown for stories with no picture
+			if(thumb.indexOf('http') !== -1) { 
+				addImage(thumb, url, 'images'); 
+			}
 		}
+
+		// Add a class of 'crawledImage' to each link
+		var crawledImages = document.getElementsByClassName('crawledImage');
+
+		// Add click event listener for each image
+		for(var x = 0; x<crawledImages.length; x++) {
+			crawledImages[x].addEventListener('click', function(e){
+				console.log(this.href);
+				e.preventDefault();
+			}, false);			
+		}
+	
 
 	});
 
 }, false);
 
 // Clear search text box when clicked
-$('sub_text').addEventListener('click', function(){
+sub_text.addEventListener('click', function(){
 	this.value = '';
+}, false);
+
+// Run search if user hits enter key from the search box
+sub_text.addEventListener('keyup', function(event){
+	if(event.keyCode == 13) {
+		search_btn.click();
+	}
 }, false);
 
 function getJSON(path, callback) {
@@ -48,8 +90,8 @@ function addImage(thumbURL, url, location) {
 	var newIMG = document.createElement('IMG');
 	var newLink = document.createElement('A');
 	newLink.href = url;
+	newLink.classList.add('crawledImage');
 	newIMG.src = thumbURL;
-
 	newLink.appendChild(newIMG);
 
 	$(location).appendChild(newLink);
@@ -59,3 +101,14 @@ function addImage(thumbURL, url, location) {
 function $(item) {
 	return document.getElementById(item);
 }
+
+function getRadioValue(form, name) {
+	var radios = document.getElementById(form).elements[name];
+
+	for(var x=0; x<radios.length; x++) {
+		if(radios[x].checked) { 
+			return radios[x].id;
+		}
+	}
+}
+

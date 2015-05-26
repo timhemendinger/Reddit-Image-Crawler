@@ -2,12 +2,32 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Reddit Image Search</title>
+	<title>Reddit Image Crawler</title>
 	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-	<input type="text" placeholder="Enter a subreddit" id="sub_text">
-	<button id="search_btn">Search</button>
+	<form id="form-search" onsubmit="return false;">
+		<input type="text" placeholder="Enter a subreddit" id="sub_text">
+
+		<button id="search_btn">Search</button>
+
+		<input type="radio" name="sort" id="hot_rbox" checked><label for="hot_rbox">Hot</label></input>
+		<input type="radio" name="sort" id="new_rbox"><label for="new_rbox">New</label></input>
+		<input type="radio" name="sort" id="top_rbox"><label for="top_rbox">Top</label></input>
+
+		<label for="dropdown_limit">Results: </label>
+
+		<select id="dropdown_limit">
+			<option value="25">25</option>
+			<option value="50">50</option>
+			<option value="100">100</option>
+			<option value="250">250</option>
+			<option value="500">500</option>
+		</select>
+
+
+	</form>
 
 	<div id="images"></div>
 

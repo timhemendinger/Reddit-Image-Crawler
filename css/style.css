@@ -1,9 +1,18 @@
+* {
+	font-family: 'Helvetica';
+}
+
 #images img {
 	display: inline;
 	float: left;
 	margin: 0 1em 1em 0;
+
 }
 
 #images {
 	margin-top: 1em;
+}
+
+label[for='dropdown_limit'] {
+	margin-left: 1em;
 }
