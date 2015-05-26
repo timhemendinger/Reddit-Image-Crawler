@@ -76,21 +76,20 @@ input[type='radio'] {
 }
 
 #images {
-	margin-top: 1em;
+	margin: 1em auto 0 auto;
 	padding: 0 1em;
+	text-align: center;
 }
 
 label[for='dropdown_limit'] {
 	margin-left: 1em;
 }
 
-/* Each image div will be 140px in height so that */
 .image {
 	text-align: center;
 	width: 170px;
 	height: 140px;
-	margin-bottom: 1em;
-	float: left;
+	display: inline-block;
 }
 
 .image img {
