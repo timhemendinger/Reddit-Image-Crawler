@@ -7,27 +7,36 @@
 </head>
 
 <body>
-	<form id="form-search" onsubmit="return false;">
-		<input type="text" placeholder="Enter a subreddit" id="sub_text">
+	<header>
+		<form id="form-search" onsubmit="return false;">
+			<input type="text" placeholder="Enter a subreddit" id="sub_text">
 
-		<button id="search_btn">Search</button>
+			<button id="search_btn">Search</button>
+			
+			<fieldset id="sort-radio-boxes">
+				<input type="radio" name="sort" id="hot_rbox" checked><label for="hot_rbox">Hot</label></input>
+				<input type="radio" name="sort" id="new_rbox"><label for="new_rbox">New</label></input>
+				<input type="radio" name="sort" id="top_rbox"><label for="top_rbox">Top</label></input>
+			</fieldset>
 
-		<input type="radio" name="sort" id="hot_rbox" checked><label for="hot_rbox">Hot</label></input>
-		<input type="radio" name="sort" id="new_rbox"><label for="new_rbox">New</label></input>
-		<input type="radio" name="sort" id="top_rbox"><label for="top_rbox">Top</label></input>
+			<fieldset id="results_dropdown">
 
-		<label for="dropdown_limit">Results: </label>
+				<label for="dropdown_limit">Results: </label>
 
-		<select id="dropdown_limit">
-			<option value="25">25</option>
-			<option value="50">50</option>
-			<option value="100">100</option>
-			<option value="250">250</option>
-			<option value="500">500</option>
-		</select>
+				<select id="dropdown_limit">
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+					<option value="250">250</option>
+					<option value="500">500</option>
+				</select>
+
+			</fieldset>
 
 
-	</form>
+		</form>
+
+	</header>
 
 	<div id="images"></div>
 

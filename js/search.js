@@ -20,7 +20,7 @@ search_btn.addEventListener('click', function(e) {
 					+(sub_text.value)
 					+'/'+sortOption
 					+'/.json?'
-					+'limit='+limit+'&after=1';
+					+'limit='+limit;
 
 	console.log(subreddit);
 
