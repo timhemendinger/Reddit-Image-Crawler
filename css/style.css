@@ -1,5 +1,9 @@
 #images img {
 	display: inline;
 	float: left;
-	max-width: 10%;
+	margin: 0 1em 1em 0;
+}
+
+#images {
+	margin-top: 1em;
 }
