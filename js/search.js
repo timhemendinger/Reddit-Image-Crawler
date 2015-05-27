@@ -2,6 +2,14 @@
 var sub_text = $('sub_text');
 var search_btn = $('search_btn');
 
+var sort_boxes = document.getElementsByClassName('sort_rbox');
+
+for (var x=0; x<sort_boxes.length; x++) {
+	sort_boxes[x].addEventListener('click', function(){
+		search_btn.click();
+	}, false);
+}
+
 search_btn.addEventListener('click', function(e) {
 
 	// Get selected sort radio box (hot/new/top)
@@ -45,6 +53,7 @@ search_btn.addEventListener('click', function(e) {
 		var crawledImages = document.getElementsByClassName('crawledImage');
 
 		// Add click event listener for each image
+		// some kind of slider will go here
 		for(var x = 0; x<crawledImages.length; x++) {
 			crawledImages[x].addEventListener('click', function(e){
 				console.log(this.href);
