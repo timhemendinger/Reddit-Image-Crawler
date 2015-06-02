@@ -1,14 +1,14 @@
 
 var sub_text = $('sub_text');
 var search_btn = $('search_btn');
-
+var dropdown_limit = $('dropdown_limit');
 var sort_boxes = document.getElementsByClassName('sort_rbox');
 
 for (var x=0; x<sort_boxes.length; x++) {
-	sort_boxes[x].addEventListener('click', function(){
-		search_btn.click();
-	}, false);
+	sort_boxes[x].addEventListener('click', refreshSearch, false);
 }
+
+dropdown_limit.addEventListener('change', refreshSearch, false);
 
 search_btn.addEventListener('click', function(e) {
 
@@ -66,11 +66,6 @@ search_btn.addEventListener('click', function(e) {
 
 }, false);
 
-// Clear search text box when clicked
-sub_text.addEventListener('click', function(){
-	this.value = '';
-}, false);
-
 function getJSON(path, callback) {
 
     var httpRequest = new XMLHttpRequest();
@@ -85,6 +80,13 @@ function getJSON(path, callback) {
     httpRequest.open('GET', path);
     httpRequest.send(); 
 };
+
+// Repopulate results unless search box is blank
+function refreshSearch() {
+	if(sub_text.value.trim()) {
+		search_btn.click();
+	}
+}
 
 // Add image to location in DOM
 function addImage(thumbURL, url, location) {
