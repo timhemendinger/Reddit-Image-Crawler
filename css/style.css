@@ -113,6 +113,14 @@ label[for='dropdown_limit'] {
 	transform: scale(1.1);
 }
 
+#loading-image {
+	position: fixed;
+	top: 50%;
+	visibility: hidden;
+	z-index: 9999;
+	width: 50px;
+}
+
 @media (max-width: 525px) {
 	header {
 		height: 75px;

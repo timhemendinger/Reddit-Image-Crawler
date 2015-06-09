@@ -3,6 +3,7 @@ var sub_text = $('sub_text');
 var search_btn = $('search_btn');
 var dropdown_limit = $('dropdown_limit');
 var sort_boxes = document.getElementsByClassName('sort_rbox');
+var loading_image = $('loading-image');
 
 for (var x=0; x<sort_boxes.length; x++) {
 	sort_boxes[x].addEventListener('click', refreshSearch, false);
@@ -11,7 +12,6 @@ for (var x=0; x<sort_boxes.length; x++) {
 dropdown_limit.addEventListener('change', refreshSearch, false);
 
 search_btn.addEventListener('click', function(e) {
-
 	// Get selected sort radio box (hot/new/top)
 	var sortOption = getRadioValue('form-search', 'sort');
 	sortOption = (sortOption.slice(0,sortOption.indexOf('_rbox')));
@@ -21,7 +21,12 @@ search_btn.addEventListener('click', function(e) {
 	limit = limit.options[limit.selectedIndex].text;
 
 	// Clear the images displayed (if there was a previous search)
-	$('images').innerHTML = '';
+	var imageDivs = document.getElementsByClassName('image');
+
+	// Remove each image div one by one until there are no more
+	while(imageDivs[0]) {
+		imageDivs[0].parentNode.removeChild(imageDivs[0]);
+	}
 
 	// Reddit JSON URL for Subreddit entered
 	var subreddit = 'http://www.reddit.com/r/'
@@ -67,18 +72,22 @@ search_btn.addEventListener('click', function(e) {
 }, false);
 
 function getJSON(path, callback) {
-
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
         if (httpRequest.readyState === 4) {
+
+        	loading_image.style.visibility = "hidden";
+
             if (httpRequest.status === 200) {
                 var data = JSON.parse(httpRequest.responseText);
                 if (callback) callback(data);
             }
+        } else {
+			loading_image.style.visibility = "visible";
         }
     };
     httpRequest.open('GET', path);
-    httpRequest.send(); 
+    httpRequest.send(null); 
 };
 
 // Repopulate results unless search box is blank
