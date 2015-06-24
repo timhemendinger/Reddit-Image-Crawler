@@ -134,6 +134,10 @@ label[for='dropdown_limit'] {
 	label[for='dropdown_limit'] {
 		margin-left: .2em;
 	}
+
+	#images {
+		margin-top: 90px;
+	}
 }
 
 @media (max-width: 385px) {
